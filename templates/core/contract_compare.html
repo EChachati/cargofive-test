@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block container %}
+    <div>
+        <div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Indice</th>
+                        <th>Origen 1</th>
+                        <th>Destino 1</th>
+                        <th>Origen 2</th>
+                        <th>Destino 2</th>
+                        <th>Estado </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in routes %}
+                        <tr>
+                            <td>{{ forloop.counter }}</td>
+                            <td>{{ item.origin_1 }}</td>
+                            <td>{{ item.destination_1 }}</td>
+                            <td>{{ item.origin_2 }}</td>
+                            <td>{{ item.destination_2 }}</td>
+
+                            {% if not item.change %}
+                                <td>Sin Cambio</td>
+                            {% else %}
+                                {% if item.origin_1 == 'No Info' %}
+                                    <td>Nuevo Registro</td>
+                                {% else %}
+                                    <td>Cambio</td>
+                                {% endif %}
+                            {% endif %}
+                        </tr>
+                    {% endfor %}
+            </table>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block container %}
+    <div>
+        <div>
+            {% for contract in contracts%}
+                <a href="/contract/{{ contract.id }}/">
+                    <p>{{contract.name}}</p>
+                    <p>{{contract.date}}</p>
+                </a>
+            {% endfor %}
+        <div>
+    </div>
+
+{% endblock %}

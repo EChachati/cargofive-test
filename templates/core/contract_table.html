@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block container%}
+    <div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Fecha</th>
+                    <th>Origen</th>
+                    <th>Destino</th>
+                    <th>Tarifa 20</th>
+                    <th>Tarifa 40</th>
+                    <th>Tarifa 40 HC</th>
+                    <th>Moneda</th>
+                </tr>
+            <thead>
+            <tbody>
+                {% for rate in rates %}
+                    <tr>
+                        <td>{{ rate.name }}</td>
+                        <td>{{ rate.date }}</td>
+                        <td>{{ rate.origin }}</td>
+                        <td>{{ rate.destination }}</td>
+                        <td>{{ rate.twenty }}</td>
+                        <td>{{ rate.forty }}</td>
+                        <td>{{ rate.fortyhc }}</td>
+                        <td>{{ rate.currency }}</td>
+                    </tr>
+                {% endfor %}
+        </table>
+    </div>
+
+{% endblock %}
