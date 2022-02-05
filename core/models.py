@@ -2,6 +2,14 @@ from django.db import models
 
 
 class Contract(models.Model):
+    """
+    Contract Model
+
+    A Contract is defined by a name and a date given in the form
+    Is used to relate the Rates to the Contract
+    A Contract can have multiple Rates
+    """
+
     name = models.CharField(max_length=100)
     date = models.DateField()
 
@@ -11,7 +19,11 @@ class Contract(models.Model):
 
 class Rate(models.Model):
     """
+    Rate Model
 
+    A Rate is defined by the origin, destination, currency, twenty, forty and fortyhc values
+    Are related to a Contract
+    A Rate can only have one Contract
     """
     origin = models.CharField(max_length=32)
     destination = models.CharField(max_length=32)
