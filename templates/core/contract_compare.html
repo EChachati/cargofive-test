@@ -3,30 +3,62 @@
 {% block container %}
     <div>
         <div>
-            <table>
-                <thead>
+            <div class="row row-cols-3 row-cols-md-2 g-4" style="border-radius: 25px;">
+                <div class="col mb-4">
+                    <div class="card text-center bg-secondary">
+                        <div class="card-body">
+                            <h4 class="card-title">
+                                {{contract_1.name}}
+                            </h4>
+                            <h5 class="card-subtitle">
+                                {{ contract_1.date }}
+                            </h5>
+                            <p class="card-text">
+                                Archivo 1
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col mb-4">
+                    <div class="card text-center bg-secondary">
+                        <div class="card-body">
+                            <h4 class="card-title">
+                                {{contract_2.name}}
+                            </h4>
+                            <h5 class="card-subtitle">
+                                {{ contract_2.date }}
+                            </h5>
+                            <p class="card-text">
+                                Archivo 2
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <table class="table table-striped">
+                <thead class="table-light">
                     <tr>
-                        <th>Indice</th>
-                        <th>Origen 1</th>
-                        <th>Destino 1</th>
-                        <th>Origen 2</th>
-                        <th>Destino 2</th>
-                        <th>Estado </th>
+                        <th scope="col">#</th>
+                        <th scope="col">Origen 1</th>
+                        <th scope="col">Destino 1</th>
+                        <th scope="col">Origen 2</th>
+                        <th scope="col">Destino 2</th>
+                        <th scope="col">Estado </th>
                     </tr>
                 </thead>
                 <tbody>
                     {% for item in routes %}
                         <tr>
-                            <td>{{ forloop.counter }}</td>
-                            <td>{{ item.origin_1 }}</td>
-                            <td>{{ item.destination_1 }}</td>
-                            <td>{{ item.origin_2 }}</td>
-                            <td>{{ item.destination_2 }}</td>
+                            <td scope="row">{{ forloop.counter }}</td>
+                            <td scope="row">{{ item.origin_1 }}</td>
+                            <td scope="row">{{ item.destination_1 }}</td>
+                            <td scope="row">{{ item.origin_2 }}</td>
+                            <td scope="row">{{ item.destination_2 }}</td>
 
                             {% if not item.change %}
                                 <td>Sin Cambio</td>
                             {% else %}
-                                {% if item.origin_1 == 'No Info' %}
+                                {% if item.origin_1 == 'No Info' or item.origin_2 == 'No Info' %}
                                     <td>Nuevo Registro</td>
                                 {% else %}
                                     <td>Cambio</td>

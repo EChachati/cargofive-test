@@ -230,7 +230,7 @@ svg:not(:root) {
 }
 
 table {
-    border-collapse: collapse
+    border-collapse: collapse;
 }
 
 caption {
@@ -582,7 +582,10 @@ pre code {
     padding-right: 15px;
     padding-left: 15px;
     margin-right: auto;
-    margin-left: auto
+    margin-left: auto;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius: 25px;
 }
 
 @media (min-width:576px) {
@@ -1922,7 +1925,7 @@ pre code {
 .table-light,
 .table-light>td,
 .table-light>th {
-    background-color: #fdfdfe
+    background-color: #6ea4bf
 }
 
 .table-hover .table-light:hover {
@@ -2417,7 +2420,7 @@ select.form-control-lg:not([size]):not([multiple]) {
 }
 
 .invalid-feedback {
-    display: none;
+
     width: 100%;
     margin-top: .25rem;
     font-size: 80%;
@@ -4765,7 +4768,9 @@ input[type=submit].btn-block {
     background-color: #fff;
     background-clip: border-box;
     border: 1px solid rgba(0, 0, 0, .125);
-    border-radius: .25rem
+    border-radius: .25rem;
+    margin: 10px 0px;
+    margin-top: 10px;
 }
 
 .card>hr {
@@ -6518,7 +6523,7 @@ button.close {
 }
 
 .bg-primary {
-    background-color: #007bff !important
+    background-color: #c2efeb !important
 }
 
 a.bg-primary:focus,
@@ -6529,7 +6534,7 @@ button.bg-primary:hover {
 }
 
 .bg-secondary {
-    background-color: #6c757d !important
+    background-color: #6EA4BF !important
 }
 
 a.bg-secondary:focus,
@@ -6584,7 +6589,7 @@ button.bg-danger:hover {
 }
 
 .bg-light {
-    background-color: #f8f9fa !important
+    background-color: #ECFEE8 !important
 }
 
 a.bg-light:focus,

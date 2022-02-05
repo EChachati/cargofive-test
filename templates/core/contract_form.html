@@ -1,12 +1,22 @@
 {% extends "base.html" %}
 
 {% block container %}
-    <div>
-        <form method="post" enctype="multipart/form-data">
+    <div class="mb-3">
+        <form method="post" enctype="multipart/form-data"  novalidate>
             {% csrf_token %}
-
-            {{ form.as_p }}
-            <button type="submit" name="submit">Guardar</button>
+            <label for="name" class="col-sm-2 col-form-label">Nombre</label>
+            {{ form.name }}
+            <label for="date" class="col-sm-2 col-form-label">Fecha</label>
+            {{ form.date }}
+            <label for="file" class="col-sm-2 col-form-label">Archivo</label>
+            {{ form.file }}
+            {% if form.errors %}
+                <div class="invalid-feedback">
+                    {{ form.errors }}
+                </div>
+            {% endif %}
+            <br>
+            <button class="btn btn-primary" type="submit" name="submit">Guardar</button>
         </form>
     </div>
 {% endblock %}

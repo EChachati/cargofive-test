@@ -38,6 +38,7 @@ class TableContractView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['rates'] = Rate.objects.filter(contract=context['pk'])
+        context['contract'] = Contract.objects.get(pk=context['pk'])
         return context
 
 
@@ -54,7 +55,5 @@ class CompareContractView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['routes'] = compare_last_two_files()
-        import pdb
-        #pdb.set_trace()
+        context['contract_1'], context['contract_2'], context['routes'] = compare_last_two_files()
         return context

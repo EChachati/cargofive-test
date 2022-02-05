@@ -1,14 +1,17 @@
 {% extends 'base.html' %}
 {% block container %}
-    <div>
+    <div style="card">
         <div>
             {% for contract in contracts%}
-                <a href="/contract/{{ contract.id }}/">
-                    <p>{{contract.name}}</p>
-                    <p>{{contract.date}}</p>
+                <a href="/contract/{{ contract.id }}/" style="color: #343a40; text-decoration: none;">
+                    <div class="card bg-secondary">
+                        <div class="card-body">
+                            <h5 class="card-title">{{contract.name}}</h5>
+                            <p class="card-text">{{contract.date}}</p>
+                        </div>
+                    </div>
                 </a>
             {% endfor %}
         <div>
     </div>
-
 {% endblock %}

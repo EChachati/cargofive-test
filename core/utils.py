@@ -34,16 +34,13 @@ def compare_last_two_files():
         )
     )
 
-    print(contract_1.name)
-    print(contract_2.name)
-
     df_1 = pd.DataFrame(
         list(
             Rate.objects.filter(
                 contract=contract_1
             )
             .values(
-                'origin', 'destination'  # , 'currency', 'twenty', 'forty', 'fortyhc'
+                'origin', 'destination'
             )
         )
     ).reset_index()
@@ -54,7 +51,7 @@ def compare_last_two_files():
                 contract=contract_2
             )
             .values(
-                'origin', 'destination'  # , 'currency', 'twenty', 'forty', 'fortyhc'
+                'origin', 'destination'
             )
         )
     ).reset_index()
@@ -69,4 +66,4 @@ def compare_last_two_files():
         df['destination_1'] != df['destination_2']
     )
 
-    return [item[1] for item in list(df.iterrows())]
+    return [contract_1, contract_2, [item[1] for item in list(df.iterrows())]]
