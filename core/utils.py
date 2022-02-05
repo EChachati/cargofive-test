@@ -1,8 +1,9 @@
 import pandas as pd
 from core.models import Rate, Contract
+from typing import Optional, Tuple
 
 
-def read_excel_data(file, contract):
+def read_excel_data(file, contract: Contract):
     """
     This function reads the excel file sent in the FormView
     cleans his data on a pandas Dataframe
@@ -45,14 +46,16 @@ def read_excel_data(file, contract):
         rate.save()
 
 
-def compare_last_two_files():
+def compare_two_files(contracts: Optional[Tuple[Contract]] = None):
     """
-    This function compares the last two files uploaded to the database
+    This function compares the two files uploaded to the database
     and returns a list of the rates that are different between the two files
 
-    :params: None
+    :params: contracts: Optional[Tuple[Contract]] = None -> Django Contract objects to compare
     :return: an array where the first two index are the django objects from the last two files,
-    aand the third is a list of the rates that are different between the two files
+    and the third is a list of the rates that are different between the two files
+
+    if no contracts are passed, it will compare the last two files
 
     Process:
     1. Get the last two files uploaded to the database
@@ -62,11 +65,14 @@ def compare_last_two_files():
     5. Compare the two DataFrames, creating a new column with the result of the comparison
     6. return the dataframe with the comparison result, as long as the Django object representing the files compared
     """
-    contract_1, contract_2 = list(
-        Contract.objects.filter(
-            id__gte=Contract.objects.count() - 1
+    if not contracts:
+        contract_1, contract_2 = list(
+            Contract.objects.filter(
+                id__gte=Contract.objects.count() - 1
+            )
         )
-    )
+    else:
+        contract_1, contract_2 = contracts
 
     df_1 = pd.DataFrame(
         list(

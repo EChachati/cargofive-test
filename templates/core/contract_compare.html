@@ -58,8 +58,10 @@
                             {% if not item.change %}
                                 <td>Sin Cambio</td>
                             {% else %}
-                                {% if item.origin_1 == 'No Info' or item.origin_2 == 'No Info' %}
+                                {% if item.origin_1 == 'No Info' and item.destination_1 == 'No Info' %}
                                     <td>Nuevo Registro</td>
+                                {% elif item.origin_2 == 'No Info' and item.destination_2 == 'No Info' %}
+                                    <td>Registro Eliminado</td>
                                 {% else %}
                                     <td>Cambio</td>
                                 {% endif %}

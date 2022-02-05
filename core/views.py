@@ -2,10 +2,10 @@ from django.shortcuts import render
 from django.views.generic import FormView, ListView
 from django.views.generic.base import TemplateView
 
-from core.forms import ContractForm
+from core.forms import ContractForm, ChoiceContractForm
 from core.models import Contract, Rate
 
-from core.utils import read_excel_data, compare_last_two_files
+from core.utils import read_excel_data, compare_two_files
 
 
 class ContractFormView(FormView):
@@ -70,7 +70,7 @@ class ListContractView(ListView):
     paginate_by = 15
 
 
-class CompareContractView(TemplateView):
+class CompareLastTwoContractView(TemplateView):
     """
     Shows the difference between the last two contracts
     """
@@ -78,5 +78,28 @@ class CompareContractView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['contract_1'], context['contract_2'], context['routes'], context['changed_items'] = compare_last_two_files()
+        context['contract_1'], context['contract_2'], context['routes'], context['changed_items'] = compare_two_files()
         return context
+
+
+class SelectCompareContractView(FormView):
+    """
+    Allows the user to select two contracts to compare
+    """
+
+    template_name = 'core/contract_compare_select.html'
+    form_class = ChoiceContractForm
+
+    def form_valid(self, form):
+        """
+        Gets the form data and renders the Comparison page
+        """
+        contract_1 = form.cleaned_data['contract_1']
+        contract_2 = form.cleaned_data['contract_2']
+
+        context = self.get_context_data()
+        context['contract_1'], context['contract_2'], context['routes'], context['changed_items'] = compare_two_files(
+            (contract_1, contract_2)
+        )
+
+        return render(self.request, 'core/contract_compare.html', context)

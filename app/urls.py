@@ -24,8 +24,13 @@ urlpatterns = [
         name='list'
     ),
     path(
-        'compare/',
-        CompareContractView.as_view(),
+        'comparelasttwo/',
+        CompareLastTwoContractView.as_view(),
         name='compare'
     ),
+    path(
+        'select-compare/',
+        SelectCompareContractView.as_view(),
+        name='select_compare'
+    )
 ]

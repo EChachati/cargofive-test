@@ -82,3 +82,39 @@ class ContractForm(forms.Form):
                 ['El archivo debe ser un archivo de excel'])
 
         return self.cleaned_data
+
+
+class ChoiceContractForm(forms.Form):
+    queryset = Contract.objects.all()
+    contract_1 = forms.ModelChoiceField(
+        queryset,
+        widget=forms.Select(
+            attrs={
+                'class': 'form-control',
+            }
+        ),
+        required=False
+    )
+    contract_2 = forms.ModelChoiceField(
+        queryset,
+        widget=forms.Select(
+            attrs={
+                'class': 'form-control',
+            }
+        ),
+        required=False
+    )
+
+    def clean(self):
+        cleaned_data = super().clean()
+        contract_1 = cleaned_data.get('contract_1')
+        contract_2 = cleaned_data.get('contract_2')
+
+        if not contract_1:
+            self._errors['Contrato 1'] = self.error_class(
+                ['El contrato 1 es obligatorio'])
+        if not contract_2:
+            self._errors['Contrato 2'] = self.error_class(
+                ['El contrato 2 es obligatorio'])
+
+        return self.cleaned_data

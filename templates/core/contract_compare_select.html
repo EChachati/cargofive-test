@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block container %}
+    <div class="mb-3">
+        <form method="post" enctype="multipart/form-data"  novalidate>
+            {% csrf_token %}
+            <label class="col-sm-2 col-form-label">Contrato 1</label>
+            {{ form.contract_1 }}
+            <label class="col-sm-2 col-form-label">Contrato 2</label>
+            {{ form.contract_2 }}
+            {% if form.errors %}
+                <div class="invalid-feedback">
+                    {{ form.errors }}
+                </div>
+            {% endif %}
+            <br>
+            <button class="btn btn-primary" type="submit" name="submit">Comparar</button>
+        </form>
+    </div>
+{% endblock %}
