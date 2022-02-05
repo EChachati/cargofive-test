@@ -61,6 +61,7 @@ class ListContractView(ListView):
     """
     Shows all the contracts in a list ordered by date of the contract
     paginate_by: number of contracts per page
+    Ordered by newer contract first
     """
     template_name = 'core/contract_list.html'
     model = Contract
